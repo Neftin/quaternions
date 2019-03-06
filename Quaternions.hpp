@@ -164,7 +164,7 @@ namespace Quaternions {
                                  c1[3]-c2[3] , }; 
 
       Quaternion result(cr[0],cr[1],cr[2],cr[3]);
-      DEBUG_MESSAGE("sum of quaternions");
+      DEBUG_MESSAGE("subtraction of quaternions");
       return result;
   }
 
@@ -199,8 +199,52 @@ namespace Quaternions {
                                      ( c1[0]*(-c2[3]) +  c1[1]*(-c2[2]) -  c1[2]*(-c2[1]) +  c1[3]*c2[0]    ) / mod2  };
 
       Quaternion result(cr[0],cr[1],cr[2],cr[3]);
-      DEBUG_MESSAGE("multiplication of quaternions");
+      DEBUG_MESSAGE("division of quaternions");
       return result;
+  }
+
+  Quaternion conj( const Quaternion & q1 ){ 
+    ///
+    /// define the coniugate
+    ///
+      Quaternion result(q1.c[0],-q1.c[1],-q1.c[2],-q1.c[3]);
+      DEBUG_MESSAGE("conjugate of quaternion");
+      return result;
+  }
+
+  real_type norm( const Quaternion & q1 ){
+    ///
+    /// define the norm
+    ///
+    DEBUG_MESSAGE("norm of quaternion");
+    return ( sqrt( q1.c[0]*q1.c[0] + q1.c[1]*q1.c[1] + q1.c[2]*q1.c[2] + q1.c[3]*q1.c[3] ) );
+  }
+
+  real_type normSquare( const Quaternion & q1 ){
+    ///
+    /// define the square of the norm
+    ///
+    DEBUG_MESSAGE("norm square of quaternion");
+    return ( q1.c[0]*q1.c[0] + q1.c[1]*q1.c[1] + q1.c[2]*q1.c[2] + q1.c[3]*q1.c[3] );
+  }
+  
+  real_type normalise( const Quaternion & q1 ){
+    ///
+    /// define the norm
+    ///
+    DEBUG_MESSAGE("normalise quaternion");
+    real_type norma = sqrt(q1.c[0]*q1.c[0] + q1.c[1]*q1.c[1] + q1.c[2]*q1.c[2] + q1.c[3]*q1.c[3]);
+
+    const real_type *c2          = q2.c;
+
+    real_type cr[4]        = { c2[0]/norma  , 
+                               c2[1]/norma  ,
+                               c2[2]/norma  ,
+                               c2[3]/norma  }; 
+
+    Quaternion result(cr[1],cr[1],cr[2],cr[3]);
+
+    return ( q1.c[0]*q1.c[0] + q1.c[1]*q1.c[1] + q1.c[2]*q1.c[2] + q1.c[3]*q1.c[3] );
   }
 
 } // close namespace
