@@ -113,12 +113,27 @@ namespace Quaternions {
       DEBUG_MESSAGE("Quaternion() : complete Quaternion created");
     }
 
+    ///
+    /// OVERLOAD = FOR SCALARS !!! (chiedi se va bene)
+    ///
+
+    void operator=( real_type _a ){ 
+    ///
+    /// define the real quaternion when q = scalar
+    ///
+      c[0] = _a;
+      c[1] = 0;
+      c[2] = 0;
+      c[3] = 0;     
+      DEBUG_MESSAGE("Quaternion() : complete Quaternion created");
+    }
+
 
 
   }; // close class
 
 ///
-/// Operators definition: + ; (q1-q2) ; (-q2) ; * ; / ; 
+/// Operators definition: + ; (q1-q2) ; (-q2) ; * ; / ; =
 ///
 
   Quaternion operator+( const Quaternion & q1 , const Quaternion & q2 ){
@@ -203,6 +218,11 @@ namespace Quaternions {
       return result;
   }
 
+
+  ///
+  /// Functions
+  ///
+
   Quaternion conj( const Quaternion & q1 ){ 
     ///
     /// define the coniugate
@@ -235,7 +255,7 @@ namespace Quaternions {
     DEBUG_MESSAGE("normalise quaternion");
     real_type norma = sqrt(q1.c[0]*q1.c[0] + q1.c[1]*q1.c[1] + q1.c[2]*q1.c[2] + q1.c[3]*q1.c[3]);
 
-    const real_type *c2          = q2.c;
+    const real_type *c2          = q1.c;
 
     real_type cr[4]        = { c2[0]/norma  , 
                                c2[1]/norma  ,

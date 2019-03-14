@@ -37,9 +37,10 @@ main(){
     q1 = q6*conj(q6);
     printQuaternion( q1 );
     d1 = norm(q7);
-    cout << " " << d1 << " \n" 
-
-
+    cout << " " << d1 << " \n" ;
+    printQuaternion( q5 );
+    q5 = 1;
+    printQuaternion( q5 ); // test overloaded =
     return 0;
 
 }
